@@ -42,7 +42,9 @@ computer_choice = random.randint(0,2)
 
 print(choices[computer_choice])
 
-if user_choice < computer_choice and computer_choice != 2:
+if user_choice == computer_choice:
+    print("Draw!")
+elif (user_choice > computer_choice and computer_choice != 0) or (user_choice == 0 and computer_choice == 2):
     print("You win!")
-elif user_choice > computer_choice and computer_choice == 2:
+else:
     print("You lose.")
