@@ -96,7 +96,7 @@ while play_again == "y":
             chosen_word_progress.append("_")
             new_chosen_word_progress.append("_")
 
-    print(''.join(chosen_word_progress))
+    print("Word to guess: " + ''.join(chosen_word_progress))
 
     player_choices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
                       'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
@@ -105,13 +105,8 @@ while play_again == "y":
     tries = 0
     while tries < 7:
 
-        print(player_choices)
-
         chosen_letter = input("Choose a letter: ")
         chosen_letter = chosen_letter.lower()
-
-        if chosen_letter in player_choices:
-            player_choices.remove(chosen_letter)
 
         for x in range(word_length):
             if chosen_word_list[x] == chosen_letter:
@@ -119,6 +114,7 @@ while play_again == "y":
 
         if new_chosen_word_progress != chosen_word_progress:
             chosen_word_progress = new_chosen_word_progress[:]
+            player_choices.remove(chosen_letter)
 
             print(''.join(chosen_word_progress).upper())
 
@@ -126,9 +122,23 @@ while play_again == "y":
                 print("You win!")
                 tries += 10
 
+        elif chosen_letter not in player_choices:
+            if chosen_letter not in chosen_word:
+                print(the_hanged_man[tries])
+                tries += 1
+                print("Hey that's cheating!")
+                if tries == 7:
+                    print("The word was " + ''.join(chosen_word).upper())
+            else:
+                print("You already chose that.")
         else:
+            player_choices.remove(chosen_letter)
             print(the_hanged_man[tries])
             tries += 1
             print(''.join(chosen_word_progress).upper())
+            if tries == 7:
+                print("The word was "+''.join(chosen_word).upper())
+
+        print("****************************"+str(7-tries)+"/7 LIVES LEFT****************************")
 
     play_again = input("Would you like to play again? y or n: \n")
