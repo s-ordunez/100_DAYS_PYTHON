@@ -131,6 +131,6 @@ word_list = ['star wars', 'darth maul', 'darth vader', 'the force',
              'beskar', 'darth bane', 'mando', 'darth sidious',
              'younglings', 'moff gideon', 'grand moff tarkin']
 
-player_choices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
                       'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
                       'u', 'v', 'w', 'x', 'y', 'z']
