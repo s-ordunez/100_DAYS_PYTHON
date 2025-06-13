@@ -1,12 +1,12 @@
 import random
 from Day_07_ascii_art import (starwars, hangman, the_hanged_man, word_list,
-                              vader, player_choices)
-
+                              vader, alphabet)
 play_again = "y"
 print(starwars)
 print(hangman)
 while play_again == "y":
 
+    player_choices = alphabet.copy()
     chosen_word = random.choice(word_list)
     chosen_word_list = []
 
@@ -67,5 +67,6 @@ while play_again == "y":
                 print("The word was "+''.join(chosen_word).upper())
 
         print("****************************"+str(7-tries)+"/7 LIVES LEFT****************************")
+        print(player_choices)
 
     play_again = input("Would you like to play again? y or n: \n")
