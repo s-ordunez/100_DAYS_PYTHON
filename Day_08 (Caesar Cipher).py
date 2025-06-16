@@ -1,35 +1,33 @@
-cipher_key = { 'a' : 1, 'b': 2, 'c' : 3, 'd' : 4, 'e' : 5, 'f' : 6,
-                   'g' : 7, 'h' : 8, 'i' : 9, 'j' : 10, 'k' : 11, 'l' : 12,
-                   'm' : 13, 'n' : 14, 'o' : 15, 'p' : 16, 'q' : 17, 'r' : 18,
-                   's' : 19, 't' : 20, 'u' : 21, 'v' : 22, 'w' : 23, 'x' : 24,
-                   'y' : 25, 'z' : 26}
-
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
                 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
                 'u', 'v', 'w', 'x', 'y', 'z']
 
-def encrypt(og_text, shift_amt):
-    encrypted_word = ''
 
-    for char in og_text:
-        if (cipher_key[char] - 1 + shift_amt) > 26 :
-            encrypted_word += alphabet[cipher_key[char] - 1 + shift_amt - 26]
+
+def caesar(og_text, shift_amt, encode_or_decode):
+    output = ""
+    if encode_or_decode == "decode":
+        shift_amt *= -1
+
+    for letter in og_text:
+        if letter not in alphabet:
+            output += letter
         else:
-            encrypted_word += alphabet[cipher_key[char] - 1 + shift_amt]
+            shifted_position = alphabet.index(letter) + shift_amt
+            shifted_position %= len(alphabet)
+            output += alphabet[shifted_position]
+    print(f"Here is the {encode_or_decode}d result: {output}")
 
-    print(encrypted_word)
+should_continue = True
 
-def decrypt(og_text, shift_amt):
-    decrypted_word = ''
+while should_continue:
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    text = input("Type your message:\n")
+    shift = int(input("Type the shift number:\n"))
 
-    for char in og_text:
-        if (cipher_key[char] - 1 - shift_amt) < 0 :
-            decrypted_word += alphabet[cipher_key[char] - 1 - shift_amt + 26]
-        else:
-            decrypted_word += alphabet[cipher_key[char] - 1 - shift_amt]
+    caesar(text, shift, direction)
 
-    print(decrypted_word)
-
-#testing
-encrypt('zebra', 3)
-decrypt('cheud', 3)
+    restart = input("Type 'yes' if you want to go again. Otherwise, type 'no:\n")
+    if restart == "no":
+        should_continue = False
+        print("Goodbye")
